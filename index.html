@@ -101,8 +101,29 @@ function startGame(){
     b.className="number";
     b.innerHTML=n;
 
-    b.style.left=Math.random()*80+"%";
-    b.style.top=Math.random()*80+"%";
+    let placed = false;
+
+while (!placed) {
+  let x = Math.random() * 75;
+  let y = Math.random() * 75;
+
+  let tooClose = false;
+
+  document.querySelectorAll(".number").forEach(existing => {
+    let ex = parseFloat(existing.style.left);
+    let ey = parseFloat(existing.style.top);
+
+    if (Math.abs(x - ex) < 12 && Math.abs(y - ey) < 12) {
+      tooClose = true;
+    }
+  });
+
+  if (!tooClose) {
+    b.style.left = x + "%";
+    b.style.top = y + "%";
+    placed = true;
+  }
+}
 
     b.onclick=function(){
 
