@@ -104,15 +104,15 @@ function startGame(){
     let placed = false;
 
 while (!placed) {
-  let x = Math.random() * 75;
-  let y = Math.random() * 75;
+  let x = Math.random() * 65;
+  let y = Math.random() * 65;
   let tooClose = false;
 
   document.querySelectorAll(".number").forEach(existing => {
     let ex = parseFloat(existing.style.left);
     let ey = parseFloat(existing.style.top);
 
-    if (Math.abs(x - ex) < 12 && Math.abs(y - ey) < 12) {
+    if (Math.abs(x - ex) < 25 && Math.abs(y - ey) < 25) {
       tooClose = true;
     }
   });
