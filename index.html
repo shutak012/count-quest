@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Count Quest</title>
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7ff;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+#game {
+  position: relative;
+  height: 75vh;
+  margin: 10px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.number {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  background: #4da6ff;
+  color: white;
+}
+
+#start {
+  font-size: 25px;
+  padding: 15px 40px;
+  border-radius: 15px;
+  border: none;
+  background: #33cc66;
+  color: white;
+}
+
+#message {
+  font-size: 30px;
+  color: #ff6600;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Count Quest</h1>
+
+<button id="start" onclick="startGame()">PLAY</button>
+
+<h2 id="message"></h2>
+
+<div id="game"></div>
+
+<script>
+let nextNumber = 1;
+
+function startGame(){
+
+  let game = document.getElementById("game");
+  game.innerHTML = "";
+  document.getElementById("message").innerHTML = "";
+  nextNumber = 1;
+
+  let nums = [];
+
+  for(let i=1;i<=20;i++){
+    nums.push(i);
+  }
+
+  nums.sort(()=>Math.random()-0.5);
+
+  nums.forEach(n=>{
+
+    let b=document.createElement("button");
+    b.className="number";
+    b.innerHTML=n;
+
+    b.style.left=Math.random()*80+"%";
+    b.style.top=Math.random()*80+"%";
+
+    b.onclick=function(){
+
+      if(n===nextNumber){
+
+        b.style.display="none";
+        nextNumber++;
+
+        if(nextNumber===21){
+          document.getElementById("message").innerHTML="Great Job!";
+        }
+
+      } else {
+        document.getElementById("message").innerHTML="Try again!";
+      }
+
+    };
+
+    game.appendChild(b);
+
+  });
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+
+</script>
+
+</body>
+</html>
