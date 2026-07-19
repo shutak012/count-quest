@@ -58,6 +58,12 @@ h1 {
 
 <h1>Count Quest</h1>
 
+<button onclick="setLevel(10)">Easy (1-10)</button>
+<button onclick="setLevel(20)">Medium (1-20)</button>
+<button onclick="setLevel(30)">Hard (1-30)</button>
+
+<br><br>
+
 <button id="start" onclick="startGame()">PLAY</button>
 
 <h2 id="message"></h2>
@@ -66,6 +72,10 @@ h1 {
 
 <script>
 let nextNumber = 1;
+let maxNumber = 20;
+function setLevel(level){
+  maxNumber = level;
+}
 function speakNumber(number){
   let words = [
     "",
@@ -89,7 +99,7 @@ function startGame(){
 
   let nums = [];
 
-  for(let i=1;i<=20;i++){
+  for(let i=1;i<=maxNumber;i++){
     nums.push(i);
   }
 
@@ -133,7 +143,7 @@ while (!placed) {
         b.style.display="none";
         nextNumber++;
 
-        if(nextNumber===21){
+        if(nextNumber===maxNumber+1){
           document.getElementById("message").innerHTML="Great Job!";
         }
 
