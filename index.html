@@ -66,7 +66,20 @@ h1 {
 
 <script>
 let nextNumber = 1;
+function speakNumber(number){
+  let words = [
+    "",
+    "One","Two","Three","Four","Five",
+    "Six","Seven","Eight","Nine","Ten",
+    "Eleven","Twelve","Thirteen","Fourteen","Fifteen",
+    "Sixteen","Seventeen","Eighteen","Nineteen","Twenty"
+  ];
 
+  let speech = new SpeechSynthesisUtterance(words[number]);
+  speech.rate = 0.8;
+  speech.pitch = 1.2;
+  speechSynthesis.speak(speech);
+}
 function startGame(){
 
   let game = document.getElementById("game");
@@ -94,6 +107,8 @@ function startGame(){
     b.onclick=function(){
 
       if(n===nextNumber){
+
+        speakNumber(n);
 
         b.style.display="none";
         nextNumber++;
